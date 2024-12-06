@@ -1,31 +1,31 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.scss';
+import { publicRouter } from '../routes';
+import Layout from '../layout';
+import { Fragment } from 'react';
+
 
 function App() {
 
-  
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-         xin chào thé giới sau tận thế <br></br>
-         <code>navar/bay.js</code>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <div>
-          <button>click me</button>
-        </div>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          {publicRouter.map((route, index) => {
+            
+            const Page = route.Component;
+            let Layout1 = Layout;
+
+            if(route.Layout){
+              Layout1 = route.Layout;
+            }else if (route.Layout === null) {
+              Layout1 = Fragment
+            }
+            return <Route key={index} path={route.path} element={<Layout1> <Page /></Layout1>} />
+          })}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

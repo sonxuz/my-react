@@ -1,0 +1,14 @@
+.waper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container{
+    display: flex;
+    width: 1000px;
+    height: 100px;
+    background-color :  yellow;
+}
+.content{
+    flex: 1;
+}
